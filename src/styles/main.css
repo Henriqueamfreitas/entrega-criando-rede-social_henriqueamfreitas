@@ -1,0 +1,21 @@
+main{
+    position: relative;
+    top: 3.6875rem;
+    padding: 0 1.875rem 0 1.875rem;
+}
+
+.main__figure{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.figure__img{
+    width: 52px;
+    height: 52px;
+}
+
+.figure__figcaption{
+    height: 52px;
+    align-items: center;
+}

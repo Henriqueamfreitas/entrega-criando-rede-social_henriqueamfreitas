@@ -1,4 +1,12 @@
-.buttonPrimary{
+header button{
+    background-color: transparent;
+    color: var(--color-white-fixed);
+}
+
+
+
+
+/* .buttonPrimary{
     background-color: var(--color-blue-1);
     color: var(--color-white-fixed);
     height: 2.375rem;
@@ -29,4 +37,4 @@
 
 .buttonWhiteFixed:hover{
     background-color: var(--color-grey-5);
-}
+} */

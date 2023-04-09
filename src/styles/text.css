@@ -27,3 +27,9 @@
     font-size: var(--font-size-5);
     line-height: var(--line-height-4);
 }
+
+.text-4{
+    font-weight: var(--font-weight-2);
+    font-size: var(--font-size-4);
+    line-height: var(--line-height-5);
+}

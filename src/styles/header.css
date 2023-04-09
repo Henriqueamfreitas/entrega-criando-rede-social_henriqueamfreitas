@@ -1,0 +1,11 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5625rem 1.875rem 1.5625rem 1.875rem;
+    width: 100%;
+    position: fixed;
+    background-color: var(--color-grey-1);
+    color: var(--color-white-fixed);
+    z-index: 1;
+}
+

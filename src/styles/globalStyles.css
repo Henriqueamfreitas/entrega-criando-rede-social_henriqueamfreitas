@@ -15,14 +15,16 @@
     --font-weight-2: 600;
     --font-weight-3: 400;
 
-    --font-size-1: 1.75rem;
-    --font-size-2: 1.25rem;
-    --font-size-3: 1rem;
-    --font-size-4: 0.875rem;
-    --font-size-5: 0.75rem;
+    --font-size-1: 1.75rem; /* 28px */
+    --font-size-2: 1.25rem; /* 20px */
+    --font-size-3: 1rem; /* 16px */
+    --font-size-4: 0.875rem; /* 14px */
+    --font-size-5: 0.75rem; /* 12px */
 
-    --line-height-1: 2.5rem;
-    --line-height-2: 1.75rem;
-    --line-height-3: 1.5rem;
-    --line-height-4: 1rem;
+    --line-height-1: 2.5rem; /* 40px */
+    --line-height-2: 1.75rem; /* 28px */
+    --line-height-3: 1.5rem; /* 24px */
+    --line-height-4: 1rem; /* 16px */
+    --line-height-5: 1.0588rem; /* 16.94px */
 }
+

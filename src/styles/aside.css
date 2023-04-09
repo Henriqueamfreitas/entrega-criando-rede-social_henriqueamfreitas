@@ -1,0 +1,46 @@
+aside{
+    position: relative;
+    top: 4.125rem;
+    margin: 0 1.875rem 0 1.875rem;
+    padding: 1.875rem 0 1.875rem 0;
+}
+
+.aside__ul{
+    display: flex;
+    align-items: center;
+    overflow-y:scroll;
+    gap: 1.25rem;
+}
+
+.aside__li{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    height: 12rem;
+    gap: 35px;
+    padding: 1.075rem 0 0 0;
+}
+
+.aside__figure{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.figcaption__description{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.figcaption__name{
+    height: 3rem;
+    text-align:center;
+}
+
+.figcaption__description{
+    height: 2rem;
+    text-align:center;
+}

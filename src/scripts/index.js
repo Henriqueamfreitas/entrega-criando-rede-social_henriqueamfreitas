@@ -8,6 +8,7 @@ const h1 = document.createElement("h1")
 const button = document.createElement("button")
 h1.innerHTML="TechPosters"
 button.innerHTML="Sair"
+button.classList="text-2"
 body.append(header)
 header.append(h1, button)
 
@@ -16,7 +17,8 @@ header.append(h1, button)
 function render(array, name, section, sectionString, functionName) {
     const h1 = document.createElement("h1")
     h1.innerHTML=name
-    h1.classList= `${sectionString}__h1`
+    // h1.classList="title-2"
+    h1.classList= `${sectionString}__h1 title-1`
     const list = document.createElement("ul")
     list.classList= `${sectionString}__ul`
 
@@ -59,18 +61,18 @@ function createCard(posts, sectionString){
     figure.classList=`${sectionString}__figure`
     userImg.classList=`figure__img`
     figcaption.classList=`figure__figcaption`
-    name.classList=`figcaption__name`
-    description.classList=`figcaption__description`
+    name.classList=`${sectionString}-figcaption__name title-2`
+    description.classList=`${sectionString}-figcaption__description text-2`
 
     postDescription.classList=`${sectionString}__postDescription`
-    h2.classList=`postDescription__h2`
-    postText.classList=`postDescription__postText`
+    h2.classList=`postDescription__h2 title-1`
+    postText.classList=`postDescription__postText text-1`
 
     postLikes.classList=`${sectionString}__postLikes`
-    button.classList=`postLikes__button`
+    button.classList=`postLikes__button text-4`
     likeButton.classList=`likeButton`
     heartImage.classList=`postLikes__heartImage`
-    numberOfLikes.classList=`postLikes__numberOfLikes`
+    numberOfLikes.classList=`postLikes__numberOfLikes text-2`
 
     // Assigning IDs to the open buttons
     button.dataset.postsId=posts.id
@@ -101,6 +103,8 @@ function createCard(posts, sectionString){
 // Creating function that render the Modal posts
 function createModalCard(posts, sectionString){
   // Creating elements
+  const closeButton = document.createElement("button")
+
   const li = document.createElement("li")
   const figure = document.createElement("figure")
   const userImg = document.createElement("img")
@@ -113,18 +117,22 @@ function createModalCard(posts, sectionString){
   const postText = document.createElement("p")
 
   // Assigning classes to the elements
-  li.classList=`${sectionString}__li`
-  figure.classList=`${sectionString}__figure`
+  closeButton.classList=`modal__closeButton`
+  
+  li.classList=`modal__li`
+  figure.classList=`modal__figure`
   userImg.classList=`figure__img`
   figcaption.classList=`figure__figcaption`
   name.classList=`figcaption__name`
   description.classList=`figcaption__description`
 
-  postDescription.classList=`${sectionString}__postDescription`
+  postDescription.classList=`modal__postDescription`
   h2.classList=`postDescription__h2`
   postText.classList=`postDescription__postText`
 
   // Assigining values to the elements
+  closeButton.innerHTML="X"
+
   userImg.src=posts.img 
   name.innerHTML=posts.user 
   description.innerHTML=posts.stack 
@@ -133,7 +141,7 @@ function createModalCard(posts, sectionString){
   postText.innerHTML=posts.text 
 
   // Establishing the hierarchy between elements
-  li.append(figure, postDescription)
+  li.append(closeButton, figure, postDescription)
   figure.append(userImg, figcaption)
   figcaption.append(name, description)
   postDescription.append(h2, postText)
@@ -157,8 +165,9 @@ function createCardSugestion(users, sectionString){
   figure.classList=`${sectionString}__figure`
   userImg.classList=`figure__img`
   figcaption.classList=`figure__figcaption`
-  figcaption.classList=`figcaption__name`
-  figcaption.classList=`figcaption__description`
+  name.classList=`figcaption__name title-2`
+  description.classList=`figcaption__description text-2`
+  button.classList="text-4"
 
   // Assigining values to the elements
   userImg.src=users.img 
@@ -175,6 +184,15 @@ function createCardSugestion(users, sectionString){
 }
 
 // Modal
+function closeModal(){
+  const button = document.querySelector(".modal__closeButton")
+  const modalController = document.querySelector(".modal-item__controller")
+  
+  button.addEventListener("click", ()=>{
+    modalController.close()
+  })
+}
+
 function showPostModal(array){
   const modalController = document.querySelector(".modal-item__controller")
   const buttons = document.querySelectorAll(".main__ul > .main__li > .main__postLikes > .postLikes__button")
@@ -192,6 +210,7 @@ function showPostModal(array){
       modalController.append(modalList) 
 
       modalController.showModal()
+      closeModal()
     })
   }
 }
@@ -208,6 +227,6 @@ function findPost(array, id){
   }
 }
 
-render(posts, "Posts", main, "main", createCard)
 render(suggestUsers, "Sugestões para você seguir", aside, "aside", createCardSugestion)
+render(posts, "Posts", main, "main", createCard)
 showPostModal(posts)
