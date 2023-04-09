@@ -1,0 +1,22 @@
+section{
+    position: relative;
+    top: 7.25rem;
+    /* width: 40%; */
+    padding: 0 1.875rem 0 1.875rem;
+}
+
+.newPostSection__figure{
+    display: flex;
+}
+
+.profile__img{
+    width: 3.25rem;
+    height: 3.25rem;
+    margin-right: .75rem;
+    margin-bottom: 2.5rem;
+}
+
+.newPost__inputsPart{
+    display: flex;
+    justify-content: end;
+}

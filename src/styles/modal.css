@@ -1,0 +1,38 @@
+.modal-item__controller{
+    background-color: var(--color-white-fixed);
+    width: 80%;
+    border: none;
+    border-radius: 8px;
+}
+
+.modal__closeButton{
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    position: absolute;
+    top: .625rem;
+    right: .625rem;
+}
+
+.modal__figure{
+    display: flex;
+    gap: .75rem;
+}
+
+.modal-figure__img{
+    width: 3.25rem;
+    height: 3.25rem;
+}
+
+.modal-item__controller::backdrop{
+    /* background-color: var(--color-grey-opacity-1); */
+    background-color: #212529;
+    opacity: 50%;
+}
+
+
+
+
+
+
+

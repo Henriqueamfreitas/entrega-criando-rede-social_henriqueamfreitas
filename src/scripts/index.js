@@ -2,6 +2,7 @@
 const body = document.querySelector("body")
 const main = document.createElement("main")
 const aside = document.createElement("aside")
+const div = document.createElement("div")
 
 const header = document.createElement("header")
 const h1 = document.createElement("h1")
@@ -11,13 +12,12 @@ button.innerHTML="Sair"
 button.classList="text-2"
 body.append(header)
 header.append(h1, button)
-
+body.append(createNewPost(users))
 
 // Creating function that render the cards
 function render(array, name, section, sectionString, functionName) {
     const h1 = document.createElement("h1")
     h1.innerHTML=name
-    // h1.classList="title-2"
     h1.classList= `${sectionString}__h1 title-1`
     const list = document.createElement("ul")
     list.classList= `${sectionString}__ul`
@@ -36,6 +36,54 @@ function render(array, name, section, sectionString, functionName) {
     section.append(h1, list)
 }
 
+// Creating function that creates new posts
+function createNewPost(users){
+  // Creating elements
+  const newPostSection = document.createElement("section") 
+  const figure = document.createElement("figure")
+  const userImg = document.createElement("img")
+  const figcaption = document.createElement("figcaption")
+  const name = document.createElement("p")
+  const description = document.createElement("p")
+
+  const newPostInputs = document.createElement("div")
+  const newPostTitle = document.createElement("input")
+  const newPostDescription = document.createElement("input")
+  const button = document.createElement("button")
+
+  // Assigning classes to the elements
+  newPostSection.classList=`newPostSection`
+  figure.classList=`newPostSection__figure`
+  userImg.classList=`profile__img`
+  figcaption.classList=`profile__figcaption`
+  name.classList=`profile-figcaption__name title-2`
+  description.classList=`profile-figcaption__description text-2`
+
+  newPostInputs.classList=`newPost__inputsPart`
+  newPostTitle.classList=`newPostSection__postTitle`
+  newPostDescription.classList=`newPostSection__postDescription`
+  button.classList=`newPostSection__button text-4`
+
+  // Assigining values to the elements
+  const user=users[0]
+  userImg.src=user.img 
+  name.innerHTML=user.user 
+  description.innerHTML=user.stack 
+
+  newPostTitle.placeholder="Digitar título do post"
+  newPostDescription.placeholder="Digitar descrição do post"
+  button.innerHTML="Postar" 
+
+  // Establishing the hierarchy between elements
+  newPostSection.append(figure, newPostTitle, newPostDescription, newPostInputs)
+  newPostInputs.append(button)
+  figure.append(userImg, figcaption)
+  figcaption.append(name, description)
+
+  return newPostSection
+}
+
+
 // Creating function that render the posts
 function createCard(posts, sectionString){
     // Creating elements
@@ -53,6 +101,7 @@ function createCard(posts, sectionString){
     const postLikes = document.createElement("div")
     const button = document.createElement("button")
     const likeButton = document.createElement("button")
+    const likesInformation = document.createElement("div")
     const heartImage = document.createElement("img")
     const numberOfLikes = document.createElement("p")
 
@@ -71,6 +120,7 @@ function createCard(posts, sectionString){
     postLikes.classList=`${sectionString}__postLikes`
     button.classList=`postLikes__button text-4`
     likeButton.classList=`likeButton`
+    likesInformation.classList=`likesInformation`
     heartImage.classList=`postLikes__heartImage`
     numberOfLikes.classList=`postLikes__numberOfLikes text-2`
 
@@ -94,7 +144,8 @@ function createCard(posts, sectionString){
     figure.append(userImg, figcaption)
     figcaption.append(name, description)
     postDescription.append(h2, postText)
-    postLikes.append(button, likeButton, numberOfLikes)
+    postLikes.append(button, likesInformation)
+    likesInformation.append(likeButton, numberOfLikes)
     likeButton.append(heartImage)
 
     return li
@@ -121,14 +172,14 @@ function createModalCard(posts, sectionString){
   
   li.classList=`modal__li`
   figure.classList=`modal__figure`
-  userImg.classList=`figure__img`
-  figcaption.classList=`figure__figcaption`
-  name.classList=`figcaption__name`
-  description.classList=`figcaption__description`
+  userImg.classList=`modal-figure__img`
+  figcaption.classList=`modal-figure__figcaption`
+  name.classList=`modal-figcaption__name title-2`
+  description.classList=`modal-figcaption__description text-2`
 
   postDescription.classList=`modal__postDescription`
-  h2.classList=`postDescription__h2`
-  postText.classList=`postDescription__postText`
+  h2.classList=`modal-postDescription__h2 title-1`
+  postText.classList=`modal-postDescription__postText text-1`
 
   // Assigining values to the elements
   closeButton.innerHTML="X"
@@ -138,7 +189,7 @@ function createModalCard(posts, sectionString){
   description.innerHTML=posts.stack 
 
   h2.innerHTML=posts.title 
-  postText.innerHTML=posts.text 
+  postText.innerHTML=posts.fullText 
 
   // Establishing the hierarchy between elements
   li.append(closeButton, figure, postDescription)
@@ -227,6 +278,7 @@ function findPost(array, id){
   }
 }
 
+createNewPost(users)
 render(suggestUsers, "Sugestões para você seguir", aside, "aside", createCardSugestion)
 render(posts, "Posts", main, "main", createCard)
 showPostModal(posts)

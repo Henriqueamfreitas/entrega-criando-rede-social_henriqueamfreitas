@@ -3,6 +3,34 @@ header button{
     color: var(--color-white-fixed);
 }
 
+.newPostSection__button{
+    width: 4.3125rem;
+    height: 2.375rem;
+    padding: 0rem .75rem 0rem .75rem;
+    color: var(--color-grey-3);
+    background-color: var(--color-grey-4);
+    border-radius: .25rem;
+}
+
+aside button{
+    background-color: var(--color-white-fixed);
+    border: .0625rem solid var(--color-grey-1);
+    width: fit-content;
+    padding: .3125rem;
+}
+
+.postLikes__button{
+    background-color: var(--color-grey-1);
+    color: var(--color-white-fixed);
+    padding: 0px, 12px, 0px, 12px;
+    border-radius: 4px;
+    height: 38px;
+    width: 92px;
+}
+
+.likeButton{
+    background-color: transparent;
+}
 
 
 

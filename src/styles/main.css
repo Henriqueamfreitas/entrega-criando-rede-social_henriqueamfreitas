@@ -2,20 +2,54 @@ main{
     position: relative;
     top: 3.6875rem;
     padding: 0 1.875rem 0 1.875rem;
+    margin-top: 2.5rem;
+    /* width: 40%; */
+
+}
+
+.main__h1{
+    margin-bottom: 3.125rem;
 }
 
 .main__figure{
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: .75rem;
+    margin-bottom: 2rem;
 }
 
 .figure__img{
-    width: 52px;
-    height: 52px;
+    width: 3.25rem;
+    height: 3.25rem;
 }
 
 .figure__figcaption{
-    height: 52px;
+    height: 3.25rem;
     align-items: center;
+}
+
+.postDescription__postText{
+    margin: .75rem 0 .75rem 0;    
+}
+
+.main__postLikes{
+    display: flex;
+    gap: 50px;
+    margin-top: 2rem;
+    margin-bottom: 3.125rem;
+}
+
+.postLikes__heartImage{
+    width: 1.4225rem;
+    height: 1.25rem;
+}
+
+.postLikes__numberOfLikes{
+    display: flex;
+    align-items: center;
+}
+
+.likesInformation{
+    display: flex;
+    gap: .4375rem;
 }

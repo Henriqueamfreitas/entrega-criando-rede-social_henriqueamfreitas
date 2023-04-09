@@ -1,0 +1,23 @@
+
+@media (min-width: 700px) {
+    body{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 100px;
+    }
+
+    aside{
+        width: 25%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    main{
+        width: 60%;
+    }
+
+    section{
+        width: 60%;
+    }
+}
