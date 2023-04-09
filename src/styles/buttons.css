@@ -1,0 +1,32 @@
+.buttonPrimary{
+    background-color: var(--color-blue-1);
+    color: var(--color-white-fixed);
+    height: 2.375rem;
+    border: none;
+}
+
+.buttonPrimary:hover{
+    background-color: var(--color-blue-2);
+}
+
+.buttonGrey-1{
+    background-color: var(--color-grey-1);
+    color: var(--color-white-fixed);
+    height: 2.375rem;
+    border: none;
+}
+
+.buttonGrey-1:hover{
+    background-color: var(--color-grey-0);
+}
+
+.buttonWhiteFixed{
+    background-color: var(--color-white-fixed);
+    color: var(--color-grey-1);
+    height: 2.375rem;
+    border: none;
+}
+
+.buttonWhiteFixed:hover{
+    background-color: var(--color-grey-5);
+}

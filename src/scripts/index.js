@@ -13,29 +13,32 @@ header.append(h1, button)
 
 
 // Creating function that render the cards
-function render(array, name, section, functionName) {
+function render(array, name, section, sectionString, functionName) {
     const h1 = document.createElement("h1")
     h1.innerHTML=name
+    h1.classList= `${sectionString}__h1`
     const list = document.createElement("ul")
+    list.classList= `${sectionString}__ul`
+
   
     list.innerHTML = ''
   
     for(let i = 0; i < array.length; i++) {
       const post = array[i]
   
-      const card = functionName(post)
+      const card = functionName(post, sectionString)
   
       list.appendChild(card)
     }
     body.append(section)
-    main.append(h1, list)
+    section.append(h1, list)
 }
 
 // Creating function that render the posts
-function createCard(posts){
+function createCard(posts, sectionString){
     // Creating elements
     const li = document.createElement("li")
-    const postOwner = document.createElement("div")
+    const figure = document.createElement("figure")
     const userImg = document.createElement("img")
     const figcaption = document.createElement("figcaption")
     const name = document.createElement("p")
@@ -47,8 +50,30 @@ function createCard(posts){
 
     const postLikes = document.createElement("div")
     const button = document.createElement("button")
+    const likeButton = document.createElement("button")
     const heartImage = document.createElement("img")
     const numberOfLikes = document.createElement("p")
+
+    // Assigning classes to the elements
+    li.classList=`${sectionString}__li`
+    figure.classList=`${sectionString}__figure`
+    userImg.classList=`figure__img`
+    figcaption.classList=`figure__figcaption`
+    name.classList=`figcaption__name`
+    description.classList=`figcaption__description`
+
+    postDescription.classList=`${sectionString}__postDescription`
+    h2.classList=`postDescription__h2`
+    postText.classList=`postDescription__postText`
+
+    postLikes.classList=`${sectionString}__postLikes`
+    button.classList=`postLikes__button`
+    likeButton.classList=`likeButton`
+    heartImage.classList=`postLikes__heartImage`
+    numberOfLikes.classList=`postLikes__numberOfLikes`
+
+    // Assigning IDs to the open buttons
+    button.dataset.postsId=posts.id
 
     // Assigining values to the elements
     userImg.src=posts.img 
@@ -62,26 +87,78 @@ function createCard(posts){
     heartImage.src="./src/assets/img/greyHeart.svg" 
     numberOfLikes.innerHTML=posts.likes 
 
-
     // Establishing the hierarchy between elements
-    li.append(postOwner, postDescription, postLikes)
-    postOwner.append(userImg, figcaption)
+    li.append(figure, postDescription, postLikes)
+    figure.append(userImg, figcaption)
     figcaption.append(name, description)
     postDescription.append(h2, postText)
-    postLikes.append(button, heartImage, numberOfLikes)
+    postLikes.append(button, likeButton, numberOfLikes)
+    likeButton.append(heartImage)
 
     return li
 }
 
-// Creating function that render the friends sugestions cards
-function createCardSugestion(users){
+// Creating function that render the Modal posts
+function createModalCard(posts, sectionString){
   // Creating elements
   const li = document.createElement("li")
+  const figure = document.createElement("figure")
+  const userImg = document.createElement("img")
+  const figcaption = document.createElement("figcaption")
+  const name = document.createElement("p")
+  const description = document.createElement("p")
+
+  const postDescription = document.createElement("div")
+  const h2 = document.createElement("h2")
+  const postText = document.createElement("p")
+
+  // Assigning classes to the elements
+  li.classList=`${sectionString}__li`
+  figure.classList=`${sectionString}__figure`
+  userImg.classList=`figure__img`
+  figcaption.classList=`figure__figcaption`
+  name.classList=`figcaption__name`
+  description.classList=`figcaption__description`
+
+  postDescription.classList=`${sectionString}__postDescription`
+  h2.classList=`postDescription__h2`
+  postText.classList=`postDescription__postText`
+
+  // Assigining values to the elements
+  userImg.src=posts.img 
+  name.innerHTML=posts.user 
+  description.innerHTML=posts.stack 
+
+  h2.innerHTML=posts.title 
+  postText.innerHTML=posts.text 
+
+  // Establishing the hierarchy between elements
+  li.append(figure, postDescription)
+  figure.append(userImg, figcaption)
+  figcaption.append(name, description)
+  postDescription.append(h2, postText)
+
+  return li
+}
+
+// Creating function that render the friends sugestions cards
+function createCardSugestion(users, sectionString){
+  // Creating elements
+  const li = document.createElement("li")
+  const figure = document.createElement("figure")
   const userImg = document.createElement("img")
   const figcaption = document.createElement("figcaption")
   const name = document.createElement("p")
   const description = document.createElement("p")
   const button = document.createElement("button")
+  
+  // Assigning classes to the elements
+  li.classList=`${sectionString}__li`
+  figure.classList=`${sectionString}__figure`
+  userImg.classList=`figure__img`
+  figcaption.classList=`figure__figcaption`
+  figcaption.classList=`figcaption__name`
+  figcaption.classList=`figcaption__description`
 
   // Assigining values to the elements
   userImg.src=users.img 
@@ -90,12 +167,47 @@ function createCardSugestion(users){
   button.innerHTML="Seguir"
 
   // Establishing the hierarchy between elements
-  li.append(userImg, figcaption, button)
+  li.append(figure, button)
+  figure.append(userImg, figcaption)
   figcaption.append(name, description)
 
   return li
 }
 
+// Modal
+function showPostModal(array){
+  const modalController = document.querySelector(".modal-item__controller")
+  const buttons = document.querySelectorAll(".main__ul > .main__li > .main__postLikes > .postLikes__button")
 
-render(posts, "Posts", main, createCard)
-render(suggestUsers, "Sugestões para você seguir", aside, createCardSugestion)
+  for (let i=0; i<buttons.length; i++){
+    const button = buttons[i]
+
+    button.addEventListener("click", (event)=>{
+      modalController.innerHTML=""
+      let id = event.target.dataset.postsId
+      let post = findPost(array, id)
+      const modalCard = createModalCard(post)
+      const modalList = document.createElement("ul")
+      modalList.append(modalCard)
+      modalController.append(modalList) 
+
+      modalController.showModal()
+    })
+  }
+}
+
+function findPost(array, id){
+  let post = {}
+
+  for(let i = 0; i < array.length; i++) {
+    if(array[i].id == id) {
+      post = array[i]
+
+      return post
+    }
+  }
+}
+
+render(posts, "Posts", main, "main", createCard)
+render(suggestUsers, "Sugestões para você seguir", aside, "aside", createCardSugestion)
+showPostModal(posts)
