@@ -30,7 +30,12 @@
     opacity: 50%;
 }
 
-
+@media screen and (min-width: 700px){
+    .modal-item__controller{
+        position: relative;
+        top: 0px;
+    }
+}
 
 
 
