@@ -1,7 +1,6 @@
 section{
     position: relative;
     top: 7.25rem;
-    /* width: 40%; */
     padding: 0 1.875rem 0 1.875rem;
 }
 
@@ -16,7 +15,7 @@ section{
     margin-bottom: 2.5rem;
 }
 
-.newPost__inputsPart{
+.newPost__buttonPart{
     display: flex;
     justify-content: end;
 }
